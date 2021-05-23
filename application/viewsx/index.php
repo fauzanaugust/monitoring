@@ -17,7 +17,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="<?php echo base_url()?>assets/vendor/datatables-bs4/css/dataTables.bootstrap4.css">
     <link rel="stylesheet" href="<?php echo base_url()?>assets/vendor/datatables-responsive/css/responsive.bootstrap4.css">
-    <link rel="stylesheet" href="<?php echo base_url()?>assets/vendor/datatables-buttons/css/buttons.bootstrap4.min.css">
     <link rel="stylesheet" href="<?php echo base_url()?>assets/vendor/select2/css/select2.min.css">
     <link rel="stylesheet" href="<?php echo base_url()?>assets/vendor/select2-bootstrap4-theme/select2-bootstrap4.min.css">
     <!-- Theme style -->
@@ -263,10 +262,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="<?php echo base_url()?>assets/vendor/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
     <script src="<?php echo base_url()?>assets/vendor/datatables-responsive/js/dataTables.responsive.min.js"></script>
     <script src="<?php echo base_url()?>assets/vendor/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-    
     <script src="<?php echo base_url()?>assets/vendor/jquery-validation/jquery.validate.min.js"></script>
     <script src="<?php echo base_url()?>assets/vendor/jquery-validation/additional-methods.min.js"></script>
-    <script src="<?php echo base_url()?>assets/vendor/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
     <!-- AdminLTE App -->
     <script src="<?php echo base_url()?>assets/js/adminlte/adminlte.min.js"></script>
 
@@ -298,7 +295,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 "info": true,
                 "autoWidth": true,
                 "responsive": true,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
             });
             $('#panelTable').DataTable({
                 "paging": true,

@@ -8,13 +8,4 @@ class frontend extends CI_Controller {
         $data['ftemplate']       = 'frontend/frontend.php';
         $this->load->view('welcome_message', $data);
 	}
-    
-    
-    public function fproduct()
-	{
-        $data['ftemplate']       = 'frontend/fproduct.php';
-        $this->load->view('welcome_message', $data);
-	}
-    
-    
 }

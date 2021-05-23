@@ -10,7 +10,7 @@ class Backend extends CI_Controller {
 
 	public function index()
 	{
-		if ($this->session->userdata('sess_moka') == TRUE) {
+		if ($this->session->userdata('monitoring_session') == TRUE) {
             
             $data['template']       = 'dashboard.php';
             
@@ -33,15 +33,15 @@ class Backend extends CI_Controller {
             $DECODE_PASS = $this->encryption->decrypt($CHECK->row()->password);
             if($DECODE_PASS == $PASSWORD) {
                 
-                $this->session->set_userdata('sess_moka', 'VALID');
-                $this->session->set_userdata('sess_moka_id', $CHECK->row()->userlogin_uid);
-                $this->session->set_userdata('sess_moka_aliasname', $CHECK->row()->username);
-                $this->session->set_userdata('sess_moka_avatar', $CHECK->row()->avatar);
-                $this->session->set_userdata('sess_moka_role', $CHECK->row()->role);
-                $this->session->set_userdata('sess_moka_uid', $CHECK->row()->id_data);
+                $this->session->set_userdata('monitoring_session', 'VALID');
+                $this->session->set_userdata('monitoring_session_id', $CHECK->row()->userlogin_uid);
+                $this->session->set_userdata('monitoring_session_aliasname', $CHECK->row()->username);
+                $this->session->set_userdata('monitoring_session_avatar', $CHECK->row()->avatar);
+                $this->session->set_userdata('monitoring_session_role', $CHECK->row()->role);
+                $this->session->set_userdata('monitoring_session_uid', $CHECK->row()->id_data);
                 
                 $this->db->update('simoka_userlogin', array('last_login' => GET_TIMESTAMP()), array('userlogin_uid' => $CHECK->row()->userlogin_uid) );
-                $this->session->set_userdata('sess_moka_lastlogin', $CHECK->row()->last_login);
+                $this->session->set_userdata('monitoring_session_lastlogin', $CHECK->row()->last_login);
                 
                 echo "success";
             } else {

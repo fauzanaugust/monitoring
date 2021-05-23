@@ -10,7 +10,7 @@ class User extends CI_Controller {
 
 	public function index()
 	{
-		if ($this->session->userdata('sess_moka') == TRUE) {
+		if ($this->session->userdata('monitoring_session') == TRUE) {
             
             $data['template']       = 'master/user/data.php';            
             $this->load->view('index', $data);
@@ -24,7 +24,7 @@ class User extends CI_Controller {
     
     public function add()
 	{
-		if ($this->session->userdata('sess_moka') == TRUE) {
+		if ($this->session->userdata('monitoring_session') == TRUE) {
             
             $data['template']       = 'master/user/add.php';
             $data['jsFile']         = 'userSave.js';
@@ -57,7 +57,7 @@ class User extends CI_Controller {
     
     public function doSave()
 	{
-		if ($this->session->userdata('sess_moka') == TRUE) {
+		if ($this->session->userdata('monitoring_session') == TRUE) {
             
             $password = $this->encryption->encrypt(trim(strip_tags($this->input->post("password"))));
             $insert = array(
@@ -80,7 +80,7 @@ class User extends CI_Controller {
     
     public function doUpdate()
 	{
-		if ($this->session->userdata('sess_moka') == TRUE) {
+		if ($this->session->userdata('monitoring_session') == TRUE) {
             
             $password = $this->encryption->encrypt(trim(strip_tags($this->input->post("password"))));
             
@@ -119,7 +119,7 @@ class User extends CI_Controller {
     
     public function doLockCode() {
         
-        if ($this->session->userdata('sess_moka') == TRUE) {
+        if ($this->session->userdata('monitoring_session') == TRUE) {
             
             $LOCK_CODE = CLEAN_TEXT($this->input->post('LOCK_CODE'));
             $this->session->set_userdata('sess_lockid', $LOCK_CODE);
@@ -134,7 +134,7 @@ class User extends CI_Controller {
     
     public function edit()
 	{
-		if ($this->session->userdata('sess_moka') == TRUE) {
+		if ($this->session->userdata('monitoring_session') == TRUE) {
             
             $data['template']       ="master/user/edit.php";
             $data['jsFile']         = 'userEdit.js';
@@ -158,7 +158,7 @@ class User extends CI_Controller {
     
     public function doTrash() {
         
-        if ($this->session->userdata('sess_moka') == TRUE) {
+        if ($this->session->userdata('monitoring_session') == TRUE) {
             
             $LOCK_CODE = CLEAN_TEXT($this->input->post('LOCK_CODE'));
             $this->db->delete('simoka_userlogin', array('userlogin_uid' => $LOCK_CODE));

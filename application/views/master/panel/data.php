@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>DAFTAR PENGGUNA</h1>
+                <h1>DAFTAR PANEL KAMPUNG TERANG</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -18,40 +18,45 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">
-                        <button type="button" class="btn btn-block bg-gradient-primary" onclick="javascript:location.href='<?php echo base_url('user/add'); ?>'"><i class="icon fas fa-plus-circle"></i> Tambah Data</button>
+                        <button type="button" class="btn btn-block bg-gradient-primary" onclick="javascript:location.href='<?php echo base_url('panel/add'); ?>'"><i class="icon fas fa-plus-circle"></i> Tambah Data</button>
                     </h3>
                 </div>
-                <?php if($this->session->flashdata('success')){ ?>
-                <div class="alert alert-success">
-                    <strong><span class="glyphicon glyphicon-ok"></span> <?php echo $this->session->flashdata('success'); ?></strong>
-                </div>
-                <?php } ?>
                 <div class="card-body table-responsive">
-                    <table id="kwtTable" name="kwtTable" class="table table-hover dataTable table-striped w-full" style="width:100%">
+                    <table id="panelTable" name="panelTable" class="table table-hover dataTable table-striped w-full" style="width:100%">
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Username</th>
-                                <th>Role</th>
-                                <th>Avatar</th>
+                                <th>Kode panel</th>
+                                <th>RW</th>
+                                <th>RT</th>
+                                <th>Alamat</th>
+                                <th>Latitude</th>
+                                <th>Longitude</th>
+                                <th>Created by</th>
+                                <th>Updated by</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                        $iLoop = 1;
-                        $GET_DATA = $this->db->query("SELECT * FROM `simoka_userlogin` ");
-                        foreach($GET_DATA->result() as $rsData):
-                    ?>
+                                $iLoop = 1;
+                                $GET_DATA = $this->db->query("SELECT * FROM `mst_data` WHERE tipe = 'panel'");
+                            foreach($GET_DATA->result() as $rsData):
+                            ?>
                             <tr>
                                 <td><?php echo $iLoop; ?></td>
-                                <td><?php echo $rsData->username; ?></td>
-                                <td><?php echo $rsData->role; ?></td>
-                                <td><img src="<?=base_url()?>assets/img/avatar/<?=$rsData->avatar?>" height="50px"></td>
+                                <td><?php echo $rsData->kode_pju; ?></td>
+                                <td><?php echo $rsData->rw; ?></td>
+                                <td><?php echo $rsData->rt; ?></td>
+                                <td><?php echo $rsData->alamat; ?></td>
+                                <td><?php echo $rsData->latitude; ?></td>
+                                <td><?php echo $rsData->longitude; ?></td>
+                                <td><?php echo $rsData->created_by; ?></td>
+                                <td><?php echo $rsData->updated_by; ?></td>
                                 <td>
-                                    <button onclick="editData('<?php echo $rsData->userlogin_uid; ?>')" type="button" class="btn btn-sm btn-warning"><i class="fas fa-edit" aria-hidden="true"></i> Ubah</button>
+                                    <button onclick="editData('<?php echo $rsData->id_data; ?>')" type="button" class="btn btn-sm btn-warning"><i class="fas fa-edit" aria-hidden="true"></i> Ubah</button>
 
-                                    <button onclick="hapusData('<?php echo $rsData->userlogin_uid; ?>')" type="button" class="btn btn-sm btn-danger"><i class="fas fa-trash" aria-hidden="true"></i> Hapus</button>
+                                    <button onclick="hapusData('<?php echo $rsData->id_data; ?>')" type="button" class="btn btn-sm btn-danger"><i class="fas fa-trash" aria-hidden="true"></i> Hapus</button>
                                 </td>
                             </tr>
                             <?php
@@ -72,14 +77,14 @@
     function editData(UID) {
 
         $.ajax({
-            url: BASE_URL + 'user/doLockCode',
+            url: BASE_URL + 'panel/doLockCode',
             type: 'POST',
             data: {
                 LOCK_CODE: UID
             },
             success: function(response) {
                 console.log(response);
-                window.location.href = BASE_URL + 'user/edit';
+                window.location.href = BASE_URL + 'panel/edit';
             }
         });
 
@@ -98,7 +103,7 @@
         then((result) => {
             if (result.value) {
                 $.ajax({
-                    url: BASE_URL + 'user/doTrash',
+                    url: BASE_URL + 'panel/doTrash',
                     type: 'POST',
                     data: {
                         LOCK_CODE: UID
@@ -112,7 +117,7 @@
                                 showCancelButton: false,
                             }).then((result) => {
                                 if (result.value) {
-                                    window.location = BASE_URL + 'user'
+                                    window.location = BASE_URL + 'panel'
                                 }
                             });
                         }

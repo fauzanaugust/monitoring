@@ -1,31 +1,5 @@
-<style>
-/*
- * These CSS rules affect the tooltips within maps with the custom-popup
- * class. See the full CSS for all customizable options:
- * https://github.com/mapbox/mapbox.js/blob/001754177f3985c0e6b4a26e3c869b0c66162c99/theme/style.css#L321-L366
- */
-.custom-popup .leaflet-popup-content-wrapper {
-  background:#3F5871;
-  color:#fff;
-  font-size:16px;
-  line-height:24px;
-  }
-.custom-popup .leaflet-popup-content-wrapper a {
-  color:rgba(255,255,255,0.5);
-  }
-.custom-popup .leaflet-popup-tip-container {
-  width:30px;
-  height:15px;
-  }
-.custom-popup .leaflet-popup-tip {
-  border-left:15px solid transparent;
-  border-right:15px solid transparent;
-  border-top:15px solid #2c3e50;
-  }
-</style>
-
 <div class="col-md-12 order-md-2">
-    <div class='custom-popup' id='mapid' style='width: 100%; height: 800px;'></div>
+    <div id='mapid' style='width: 100%; height: 800px;'></div>
 </div>
 <div class="container marketing">
     <hr class="featurette-divider">
@@ -1083,10 +1057,10 @@
         }
     });
 
-    var PJU = new LeafIcon({
+    var pju = new LeafIcon({
             iconUrl: '<?= base_url('assets/img/lamp.svg') ?>'
         }),
-        PANEL = new LeafIcon({
+        panel = new LeafIcon({
             iconUrl: '<?= base_url('assets/img/panel.png') ?>'
         })
 
@@ -1097,8 +1071,7 @@
     L.marker([<?php echo $rsData->latitude ?>, <?php echo $rsData->longitude ?>], {
             icon: <?php echo $rsData->tipe ?>
         }).addTo(mymap)
-        .bindPopup("Tipe : <b><?php echo $rsData->tipe ?> </b><br> Kode : <b><?php echo $rsData->kode_pju ?></b><br> Alamat : <b><?php echo $rsData->alamat ?> </b><br>RW : <b><?php echo $rsData->rw ?> </b> RT :<b><?php echo $rsData->rt ?> </b>");  
-
+        .bindPopup("Tipe : <?php echo $rsData->tipe ?> <br> Kode : <?php echo $rsData->kode_pju ?>");        
 
     <?php } ?>
 </script>
